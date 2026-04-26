@@ -116,7 +116,7 @@
     </nav>
 
     <div id="start" class="tab-content active">
-        <h2>Meisterhafte Sicherheit aus Leuna</h2>
+        <h2>Zuverlässiger Gerüstbau für Leuna & Umgebung</h2>
         <div class="card">
             <h3>Einsatzgebiet</h3>
             <p>Wir sind für Sie im Einsatz in <strong>Leuna, Merseburg, Bad Dürrenberg, Halle (Saale), Schkopau</strong> und im gesamten <strong>Saalekreis</strong>.</p>
@@ -224,8 +224,8 @@
     <footer>
         <p>&copy; 2026 Jens Spittel Gerüstbau.</p>
         <div class="footer-links">
-            <a onclick="openTab('rechtliches')">Impressum</a> | 
-            <a onclick="openTab('rechtliches')">Datenschutz</a>
+            <a tabindex="0" onclick="openTab('rechtliches')">Impressum</a> | 
+            <a tabindex="0" onclick="openTab('rechtliches')">Datenschutz</a>
         </div>
     </footer>
 
@@ -248,7 +248,8 @@
         function generateRequestNumber() {
             const now = new Date();
             const num = String(now.getFullYear()).slice(-2) + String(now.getMonth() + 1).padStart(2, '0') + String(now.getDate()).padStart(2, '0') + "-" + String(now.getHours()).padStart(2, '0') + String(now.getMinutes()).padStart(2, '0');
-            document.getElementById('requestNumField').value = num;
+            const field = document.getElementById('requestNumField');
+            if (field) field.value = num;
         }
 
         function updateSubject() {
@@ -256,6 +257,13 @@
             document.getElementById('emailSubject').value = subject;
             document.getElementById('replyToField').value = document.getElementById('userEmail').value;
         }
+
+        document.getElementById('contactForm').onsubmit = function() {
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = "Wird gesendet...";
+            btn.style.opacity = "0.7";
+            btn.style.cursor = "not-allowed";
+        };
 
         window.onload = generateRequestNumber;
     </script>
