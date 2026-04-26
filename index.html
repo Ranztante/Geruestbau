@@ -26,6 +26,7 @@
         nav {
             display: flex; justify-content: center; background: var(--green-dark);
             position: sticky; top: 0; z-index: 1000; border-bottom: 3px solid var(--silver-dark);
+            flex-wrap: wrap;
         }
 
         .tab-btn {
@@ -57,7 +58,6 @@
             border-left: 5px solid var(--green-main);
         }
 
-        /* Styling für die neuen Icons */
         .step-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.5rem; margin-top: 1.5rem;
@@ -101,53 +101,49 @@
         button.submit-btn:hover { background: var(--green-dark); }
 
         footer { background: var(--green-dark); color: var(--silver-mid); text-align: center; padding: 2rem; margin-top: 2rem; }
+        .footer-links { margin-top: 10px; font-size: 0.9rem; }
+        .footer-links a { color: var(--silver-mid); text-decoration: none; margin: 0 10px; }
+        .footer-links a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>Jens Spittel Gerüstbau</h1>
-        <p>Seit über 25 Jahren Ihr zuverlässiger Partner im Saalekreis</p>
+        <p>Über 25 Jahre Erfahrung im Gerüstbau – Sicher. Termintreu. Regional.</p>
     </header>
 
     <nav>
         <button class="tab-btn active" onclick="openTab('start')">Startseite</button>
         <button class="tab-btn" onclick="openTab('leistungen')">Leistungen</button>
         <button class="tab-btn" onclick="openTab('kontakt')">Anfrage</button>
+        <button class="tab-btn" onclick="openTab('rechtliches')">Impressum</button>
     </nav>
 
     <div id="start" class="tab-content active">
-        <h2>Handwerksqualität aus Leuna</h2>
+        <h2>Meisterhafte Sicherheit aus Leuna</h2>
         <div class="card">
-            <h3>Sicherheit & Standards</h3>
-            <p>Sicherheit ist im Gerüstbau unser oberstes Gebot. Wir arbeiten strikt nach aktuellen DIN-Vorschriften und verwenden ausschließlich geprüftes Material. Jedes Projekt wird vor Übergabe einer strengen Endkontrolle unterzogen.</p>
+            <h3>Einsatzgebiet</h3>
+            <p>Wir sind Ihr zuverlässiger Partner für Gerüstbauprojekte in <strong>Leuna, Merseburg, Bad Dürrenberg, Halle (Saale), Schkopau</strong> und im gesamten <strong>Saalekreis</strong>. Kurze Wege ermöglichen uns eine flexible und pünktliche Umsetzung Ihres Vorhabens.</p>
         </div>
         
         <div class="card">
             <h3>Ihr Weg zum Gerüst</h3>
             <div class="step-grid">
                 <div class="step-item">
-                    <div class="step-icon">
-                        <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2m0 14H5.17L4 17.17V4h16v12Z"/></svg>
-                    </div>
+                    <div class="step-icon"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2m0 14H5.17L4 17.17V4h16v12Z"/></svg></div>
                     <p><strong>1. Anfrage</strong><br>Erstberatung</p>
                 </div>
                 <div class="step-item">
-                    <div class="step-icon">
-                        <svg viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1h-2v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5v-5Z"/></svg>
-                    </div>
+                    <div class="step-icon"><svg viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1h-2v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5v-5Z"/></svg></div>
                     <p><strong>2. Termin</strong><br>Aufmaß vor Ort</p>
                 </div>
                 <div class="step-item">
-                    <div class="step-icon">
-                        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6M6 20V4h7v5h5v11H6z"/></svg>
-                    </div>
+                    <div class="step-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6M6 20V4h7v5h5v11H6z"/></svg></div>
                     <p><strong>3. Angebot</strong><br>Festpreis</p>
                 </div>
                 <div class="step-item">
-                    <div class="step-icon">
-                        <svg viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
-                    </div>
+                    <div class="step-icon"><svg viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg></div>
                     <p><strong>4. Aufbau</strong><br>Termintreu</p>
                 </div>
             </div>
@@ -155,21 +151,32 @@
     </div>
 
     <div id="leistungen" class="tab-content">
-        <h2>Unsere Schwerpunkte</h2>
+        <h2>Unsere Leistungen</h2>
         <div class="grid">
             <div class="card">
-                <h3>🏠 Privathäuser</h3>
-                <p>Einfamilien- und Mehrfamilienhäuser in Leuna und Umgebung. Perfekter Halt für Ihre Fassaden- und Dacharbeiten.</p>
+                <h3>🏠 Wohnungsbau</h3>
+                <ul>
+                    <li>Fassadengerüste für Maler- & Verputzarbeiten</li>
+                    <li>Dachfanggerüste zur Absturzsicherung</li>
+                    <li>Einrüstungen für Einfamilienhäuser</li>
+                </ul>
             </div>
             <div class="card">
                 <h3>🏢 Gewerbeobjekte</h3>
-                <p>Effiziente Einrüstungen für Märkte, Hallen und Industriegebäude im Saalekreis.</p>
+                <ul>
+                    <li>Arbeits- und Schutzgerüste</li>
+                    <li>Einrüstungen für Hallen & Industriegebäude</li>
+                    <li>Baustellensicherung</li>
+                </ul>
             </div>
+        </div>
+        <div class="card" style="text-align: center;">
+            <p><em>Über 25 Jahre Erfahrung und Zuverlässigkeit im Gerüstbau sprechen für uns.</em></p>
         </div>
     </div>
 
     <div id="kontakt" class="tab-content">
-        <h2>Kontakt & Anfragen</h2>
+        <h2>Anfrage stellen</h2>
         <div class="grid">
             <div class="card">
                 <h3>Direkter Draht</h3>
@@ -187,16 +194,8 @@
                     <input type="hidden" name="Anfragenummer" id="requestNumField">
                     <input type="hidden" name="_replyto" id="replyToField">
 
-                    <div class="form-group">
-                        <label>Name *</label>
-                        <input type="text" name="Name" id="userName" placeholder="Vor- und Zuname" required oninput="updateSubject()">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>E-Mail *</label>
-                        <input type="email" name="Email" id="userEmail" placeholder="ihre@mail.de" required oninput="updateSubject()">
-                    </div>
-
+                    <div class="form-group"><label>Name *</label><input type="text" name="Name" id="userName" placeholder="Vor- und Zuname" required oninput="updateSubject()"></div>
+                    <div class="form-group"><label>E-Mail *</label><input type="email" name="Email" id="userEmail" placeholder="ihre@mail.de" required oninput="updateSubject()"></div>
                     <div class="form-group">
                         <label>Objektart *</label>
                         <select name="Objektart" id="objectType" required onchange="updateSubject()">
@@ -205,20 +204,35 @@
                             <option value="Gewerbeimmobilie">Gewerbeimmobilie</option>
                         </select>
                     </div>
-
-                    <div class="form-group">
-                        <label>Nachricht / Projektdetails *</label>
-                        <textarea name="Nachricht" rows="4" placeholder="Beschreiben Sie kurz Ihr Vorhaben..." required></textarea>
-                    </div>
-
+                    <div class="form-group"><label>Nachricht *</label><textarea name="Nachricht" rows="4" placeholder="Beschreiben Sie kurz Ihr Vorhaben..." required></textarea></div>
                     <button type="submit" class="submit-btn" id="submitBtn">Anfrage jetzt absenden</button>
                 </form>
             </div>
         </div>
     </div>
 
+    <div id="rechtliches" class="tab-content">
+        <h2>Impressum & Datenschutz</h2>
+        <div class="card">
+            <h3>Impressum</h3>
+            <p><strong>Angaben gemäß § 5 TMG:</strong></p>
+            <p>Jens Spittel<br>Jens Spittel Gerüstbau<br>Starenweg 14<br>06237 Leuna</p>
+            <p><strong>Kontakt:</strong><br>Telefon: (03461) 811547<br>E-Mail: jens.spittel@web.de</p>
+            <p><strong>Aufsichtsbehörde:</strong><br>Handwerkskammer Halle (Saale)</p>
+            <p><strong>Berufsbezeichnung:</strong><br>Gerüstbauer (verliehen in Deutschland)</p>
+        </div>
+        <div class="card">
+            <h3>Datenschutz</h3>
+            <p>Wir erheben und verarbeiten Ihre Daten (Name, E-Mail, Nachricht) ausschließlich zur Bearbeitung Ihrer Anfrage über das Kontaktformular. Eine Weitergabe an Dritte erfolgt nicht ohne Ihre Zustimmung. Der Dienst Formspree wird zur technischen Übermittlung genutzt.</p>
+        </div>
+    </div>
+
     <footer>
-        <p>&copy; 2026 Jens Spittel Gerüstbau. Seit über 25 Jahren Ihr Partner im Saalekreis.</p>
+        <p>&copy; 2026 Jens Spittel Gerüstbau. Ihr Partner im Saalekreis.</p>
+        <div class="footer-links">
+            <a href="#" onclick="openTab('rechtliches')">Impressum</a> | 
+            <a href="#" onclick="openTab('rechtliches')">Datenschutz</a>
+        </div>
     </footer>
 
     <script>
