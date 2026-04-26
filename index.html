@@ -84,7 +84,6 @@
             width: 100%; padding: 0.8rem; border: 1px solid var(--silver-dark); 
             border-radius: 4px; font-size: 1rem; background-color: white;
         }
-        input[type="file"] { background: var(--white); padding: 0.5rem; border: 2px dashed var(--silver-dark); cursor: pointer; }
         
         button.submit-btn {
             background: var(--green-main); color: white; border: none;
@@ -151,9 +150,10 @@
                 <hr style="margin: 1rem 0; border: 0; border-top: 1px solid var(--silver-dark);">
                 <p><strong>Allgemeine Anfragen:</strong><br>✉️ jens.spittel@web.de</p>
                 <p style="margin-top: 10px;"><strong>Rechnungen & Buchhaltung:</strong><br>✉️ rechnung@spittel-geruestbau.de</p>
+                <p style="margin-top: 15px; font-size: 0.9rem; color: var(--green-main);"><em>Hinweis: Fotos vom Objekt können Sie uns gerne direkt per E-Mail zusenden.</em></p>
             </div>
             <div class="card">
-                <form id="contactForm" action="https://formspree.io/f/mgorqdrk" method="POST" enctype="multipart/form-data">
+                <form id="contactForm" action="https://formspree.io/f/mgorqdrk" method="POST">
                     <input type="hidden" name="_subject" id="emailSubject" value="Neue Anfrage">
                     <input type="hidden" name="Anfragenummer" id="requestNumField">
                     <input type="hidden" name="_replyto" id="replyToField">
@@ -182,11 +182,6 @@
                         <textarea name="Nachricht" rows="4" placeholder="Beschreiben Sie kurz Ihr Vorhaben..." required></textarea>
                     </div>
 
-                    <div class="form-group">
-                        <label>Anhänge (z.B. Fotos vom Objekt)</label>
-                        <input type="file" name="Anhang" multiple>
-                    </div>
-
                     <button type="submit" class="submit-btn" id="submitBtn">Anfrage jetzt absenden</button>
                 </form>
             </div>
@@ -198,6 +193,7 @@
     </footer>
 
     <script>
+        // Tab-Navigation
         function openTab(tabName) {
             const tabcontent = document.getElementsByClassName("tab-content");
             for (let i = 0; i < tabcontent.length; i++) {
@@ -210,12 +206,19 @@
             }
             document.getElementById(tabName).style.display = "block";
             document.getElementById(tabName).classList.add("active");
-            if (event && event.currentTarget) {
-                event.currentTarget.classList.add("active");
-            }
+            
+            // Markiere den richtigen Button als aktiv
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                if(btn.getAttribute('onclick').includes(tabName)) {
+                    btn.classList.add('active');
+                }
+            });
+            
             window.scrollTo(0,0);
         }
 
+        // Anfragenummer generieren (YYMMDD-HHMMSS)
         function generateRequestNumber() {
             const now = new Date();
             const year = String(now.getFullYear()).slice(-2);
@@ -233,6 +236,7 @@
             }
         }
 
+        // Betreff dynamisch aktualisieren
         function updateSubject() {
             const numField = document.getElementById('requestNumField');
             const nameField = document.getElementById('userName');
@@ -246,6 +250,7 @@
             }
         }
 
+        // Button-Sperre beim Absenden
         document.getElementById('contactForm').onsubmit = function() {
             const btn = document.getElementById('submitBtn');
             btn.innerText = "Wird gesendet...";
@@ -253,6 +258,7 @@
             btn.style.cursor = "not-allowed";
         };
 
+        // Initialisierung beim Laden
         window.onload = generateRequestNumber;
     </script>
 </body>
