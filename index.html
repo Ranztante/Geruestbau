@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerüstbau Fachbetrieb | Leuna & Saalekreis</title>
+    <title>Jens Spittel Gerüstbau | Leuna & Saalekreis</title>
     <style>
         :root {
             --green-dark: #1b4332;
@@ -105,7 +105,7 @@
 <body>
 
     <header>
-        <h1>[NAME DES UNTERNEHMENS]</h1>
+        <h1>Jens Spittel Gerüstbau</h1>
         <p>Über 25 Jahre Erfahrung im Gerüstbau – Sicher. Termintreu. Regional.</p>
     </header>
 
@@ -151,8 +151,8 @@
             <div class="card">
                 <h3>🏠 Wohnungsbau</h3>
                 <ul>
-                    <li>Fassadengerüste</li>
-                    <li>Dachfanggerüste</li>
+                    <li>Fassadengerüste für Maler- & Verputzarbeiten</li>
+                    <li>Dachfanggerüste zur Absturzsicherung</li>
                     <li>Einrüstungen für Einfamilienhäuser</li>
                 </ul>
             </div>
@@ -160,31 +160,45 @@
                 <h3>🏢 Gewerbeobjekte</h3>
                 <ul>
                     <li>Arbeits- und Schutzgerüste</li>
-                    <li>Einrüstungen für Hallen</li>
+                    <li>Einrüstungen für Hallen & Industriegebäude</li>
                     <li>Baustellensicherung</li>
                 </ul>
             </div>
         </div>
-        <p style="text-align: center;"><em>Über 25 Jahre Erfahrung und Zuverlässigkeit im Gerüstbau.</em></p>
+        <p style="text-align: center;"><em>Über 25 Jahre Erfahrung und Zuverlässigkeit im Gerüstbau sprechen für uns.</em></p>
     </div>
 
     <div id="kontakt" class="tab-content">
         <h2>Anfrage stellen</h2>
         <div class="grid">
             <div class="card">
-                <h3>Kontakt</h3>
-                <p>📍 [STRASSE HNR], [PLZ ORT]</p>
-                <p>📱 [HANDYNUMMER]</p>
-                <p>📞 [FESTNETZNUMMER]</p>
+                <h3>Direkter Draht</h3>
+                <p>📍 Starenweg 14, 06237 Leuna</p>
+                <p>📱 0173 5292791</p>
+                <p>📞 (03461) 811547</p>
                 <hr style="margin: 1rem 0; border: 0; border-top: 1px solid var(--silver-dark);">
-                <p>✉️ [EMAIL]</p>
+                <p><strong>Allgemeine Anfragen:</strong><br>✉️ jens.spittel@web.de</p>
+                <p style="margin-top: 10px;"><strong>Rechnungen & Buchhaltung:</strong><br>✉️ rechnung@spittel-geruestbau.de</p>
+                <p style="margin-top: 15px; font-size: 0.9rem; color: var(--green-main);"><em>Hinweis: Fotos vom Objekt können Sie uns gerne direkt per E-Mail zusenden.</em></p>
             </div>
             <div class="card">
-                <form action="https://formspree.io/f/mgorqdrk" method="POST">
-                    <div class="form-group"><label>Name *</label><input type="text" name="Name" required></div>
-                    <div class="form-group"><label>E-Mail *</label><input type="email" name="Email" required></div>
-                    <div class="form-group"><label>Nachricht *</label><textarea name="Nachricht" rows="4" required></textarea></div>
-                    <button type="submit" class="submit-btn">Absenden</button>
+                <form id="contactForm" action="https://formspree.io/f/mgorqdrk" method="POST">
+                    <input type="hidden" name="_subject" id="emailSubject" value="Neue Anfrage">
+                    <input type="hidden" name="Anfragenummer" id="requestNumField">
+                    <input type="hidden" name="_replyto" id="replyToField">
+
+                    <div class="form-group"><label>Name *</label><input type="text" name="Name" id="userName" placeholder="Vor- und Zuname" required oninput="updateSubject()"></div>
+                    <div class="form-group"><label>E-Mail *</label><input type="email" name="Email" id="userEmail" placeholder="ihre@mail.de" required oninput="updateSubject()"></div>
+                    <div class="form-group">
+                        <label>Objektart *</label>
+                        <select name="Objektart" id="objectType" required onchange="updateSubject()">
+                            <option value="" disabled selected>Bitte wählen...</option>
+                            <option value="Privatimmobilie">Privatimmobilie</option>
+                            <option value="Gewerbeimmobilie">Gewerbeimmobilie</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>Nachricht *</label><textarea name="Nachricht" rows="4" placeholder="Beschreiben Sie kurz Ihr Vorhaben..." required></textarea></div>
+                    <button type="submit" class="submit-btn" id="submitBtn">Anfrage jetzt absenden</button>
                 </form>
             </div>
         </div>
@@ -195,19 +209,19 @@
         <div class="card">
             <h3>Impressum</h3>
             <p><strong>Angaben gemäß § 5 TMG:</strong></p>
-            <p>[INHABER NAME]<br>[FIRMENNAME]<br>[STRASSE HNR]<br>[PLZ ORT]</p>
-            <p><strong>Kontakt:</strong><br>Telefon: [NUMMER]<br>E-Mail: [EMAIL]</p>
-            <p><strong>USt-IdNr:</strong> DE[DEINE NUMMER MORGEN]</p>
+            <p>Jens Spittel<br>Jens Spittel Gerüstbau<br>Starenweg 14<br>06237 Leuna</p>
+            <p><strong>Kontakt:</strong><br>Telefon: (03461) 811547<br>E-Mail: jens.spittel@web.de</p>
             <p><strong>Aufsichtsbehörde:</strong> Handwerkskammer Halle (Saale)</p>
+            <p><strong>Berufsbezeichnung:</strong> Gerüstbauer (verliehen in Deutschland)</p>
         </div>
         <div class="card">
             <h3>Datenschutz</h3>
-            <p>Ihre Daten werden nur zur Bearbeitung Ihrer Anfrage genutzt. Eine Weitergabe an Dritte erfolgt nicht. Wir nutzen den Dienst Formspree zur Übermittlung.</p>
+            <p>Wir erheben und verarbeiten Ihre Daten (Name, E-Mail, Nachricht) ausschließlich zur Bearbeitung Ihrer Anfrage über das Kontaktformular. Eine Weitergabe an Dritte erfolgt nicht ohne Ihre Zustimmung. Der Dienst Formspree wird zur technischen Übermittlung genutzt.</p>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 [FIRMENNAME].</p>
+        <p>&copy; 2026 Jens Spittel Gerüstbau.</p>
         <div class="footer-links">
             <a onclick="openTab('rechtliches')">Impressum</a> | 
             <a onclick="openTab('rechtliches')">Datenschutz</a>
@@ -236,6 +250,45 @@
             });
             window.scrollTo(0,0);
         }
+
+        function generateRequestNumber() {
+            const now = new Date();
+            const year = String(now.getFullYear()).slice(-2);
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            
+            const num = year + month + day + "-" + hours + minutes + seconds;
+            const field = document.getElementById('requestNumField');
+            if (field) {
+                field.value = num;
+                updateSubject();
+            }
+        }
+
+        function updateSubject() {
+            const numField = document.getElementById('requestNumField');
+            const nameField = document.getElementById('userName');
+            const typeField = document.getElementById('objectType');
+            const emailField = document.getElementById('userEmail');
+            
+            if (numField && nameField && typeField && emailField) {
+                const subject = "Anfrage(" + numField.value + ") - " + (nameField.value || "Name") + " - " + (typeField.value || "Objekt");
+                document.getElementById('emailSubject').value = subject;
+                document.getElementById('replyToField').value = emailField.value;
+            }
+        }
+
+        document.getElementById('contactForm').onsubmit = function() {
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = "Wird gesendet...";
+            btn.style.opacity = "0.7";
+            btn.style.cursor = "not-allowed";
+        };
+
+        window.onload = generateRequestNumber;
     </script>
 </body>
 </html>
