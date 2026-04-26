@@ -20,46 +20,29 @@
 
         header {
             background: linear-gradient(135deg, var(--green-dark), var(--green-main));
-            color: var(--white);
-            padding: 3.5rem 1rem;
-            text-align: center;
+            color: var(--white); padding: 3.5rem 1rem; text-align: center;
         }
 
         nav {
-            display: flex;
-            justify-content: center;
-            background: var(--green-dark);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 3px solid var(--silver-dark);
+            display: flex; justify-content: center; background: var(--green-dark);
+            position: sticky; top: 0; z-index: 1000; border-bottom: 3px solid var(--silver-dark);
             overflow-x: auto;
         }
 
         .tab-btn {
-            background: none;
-            border: none;
-            color: var(--silver-mid);
-            padding: 1rem 1.5rem;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: bold;
-            transition: all 0.3s;
-            white-space: nowrap;
+            background: none; border: none; color: var(--silver-mid);
+            padding: 1rem 1.5rem; cursor: pointer; font-size: 1rem;
+            font-weight: bold; transition: all 0.3s; white-space: nowrap;
         }
 
         .tab-btn.active {
-            color: var(--white);
-            background: var(--green-main);
+            color: var(--white); background: var(--green-main);
             border-bottom: 4px solid var(--silver-light);
         }
 
         .tab-content {
-            display: none;
-            padding: 3rem 1rem;
-            max-width: 1000px;
-            margin: 0 auto;
-            animation: fadeIn 0.4s ease;
+            display: none; padding: 3rem 1rem; max-width: 1000px;
+            margin: 0 auto; animation: fadeIn 0.4s ease;
         }
 
         .tab-content.active { display: block; }
@@ -70,38 +53,24 @@
         }
 
         .card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            background: var(--white); padding: 2rem; border-radius: 8px;
+            margin-bottom: 2rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             border-left: 5px solid var(--green-main);
         }
 
         .step-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem; margin-top: 1.5rem;
         }
 
         .step-item {
-            background: var(--silver-mid);
-            padding: 1.5rem;
-            border-radius: 6px;
-            text-align: center;
+            background: var(--silver-mid); padding: 1.5rem; border-radius: 6px; text-align: center;
         }
 
         .step-number {
-            display: inline-block;
-            background: var(--green-main);
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            line-height: 30px;
-            margin-bottom: 1rem;
-            font-weight: bold;
+            display: inline-block; background: var(--green-main); color: white;
+            width: 30px; height: 30px; border-radius: 50%; line-height: 30px;
+            margin-bottom: 1rem; font-weight: bold;
         }
 
         h2 { color: var(--green-dark); margin-bottom: 1.5rem; text-align: center; }
@@ -112,27 +81,23 @@
 
         .form-group { margin-bottom: 1.2rem; }
         label { display: block; margin-bottom: 0.4rem; font-weight: bold; color: var(--green-dark); }
-        input, textarea { width: 100%; padding: 0.8rem; border: 1px solid var(--silver-dark); border-radius: 4px; font-size: 1rem; }
+        input, textarea, select { 
+            width: 100%; padding: 0.8rem; border: 1px solid var(--silver-dark); 
+            border-radius: 4px; font-size: 1rem; background-color: white;
+        }
         input[type="file"] { background: var(--white); padding: 0.5rem; border: 2px dashed var(--silver-dark); cursor: pointer; }
         
         button.submit-btn {
-            background: var(--green-main);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-            font-size: 1.1rem;
-            transition: background 0.3s;
+            background: var(--green-main); color: white; border: none;
+            padding: 1rem 2rem; border-radius: 50px; cursor: pointer;
+            font-weight: bold; width: 100%; font-size: 1.1rem; transition: background 0.3s;
         }
         button.submit-btn:hover { background: var(--green-dark); }
 
         footer { background: var(--green-dark); color: var(--silver-mid); text-align: center; padding: 2rem; margin-top: 2rem; }
     </style>
 </head>
-<body>
+<body onload="generateRequestNumber()">
 
     <header>
         <h1>Jens Spittel Gerüstbau</h1>
@@ -149,27 +114,15 @@
         <h2>Handwerksqualität aus Leuna</h2>
         <div class="card">
             <h3>Sicherheit & Standards</h3>
-            <p>Sicherheit ist im Gerüstbau unser oberstes Gebot. Wir arbeiten strikt nach aktuellen DIN-Vorschriften und verwenden ausschließlich geprüftes, hochwertiges Material im gesamten Saalekreis. Jedes Projekt wird vor Übergabe einer strengen Endkontrolle unterzogen.</p>
+            <p>Sicherheit ist im Gerüstbau unser oberstes Gebot. Wir arbeiten strikt nach aktuellen DIN-Vorschriften und verwenden ausschließlich geprüftes Material. Jedes Projekt wird vor Übergabe einer strengen Endkontrolle unterzogen.</p>
         </div>
         <div class="card">
             <h3>Ihr Weg zum Gerüst</h3>
             <div class="step-grid">
-                <div class="step-item">
-                    <div class="step-number">1</div>
-                    <p><strong>Anfrage</strong><br>Kurze Erstberatung</p>
-                </div>
-                <div class="step-item">
-                    <div class="step-number">2</div>
-                    <p><strong>Termin</strong><br>Exaktes Aufmaß vor Ort</p>
-                </div>
-                <div class="step-item">
-                    <div class="step-number">3</div>
-                    <p><strong>Angebot</strong><br>Transparenter Festpreis</p>
-                </div>
-                <div class="step-item">
-                    <div class="step-number">4</div>
-                    <p><strong>Aufbau</strong><br>Sicher & Termintreu</p>
-                </div>
+                <div class="step-item"><div class="step-number">1</div><p><strong>Anfrage</strong><br>Erstberatung</p></div>
+                <div class="step-item"><div class="step-number">2</div><p><strong>Termin</strong><br>Aufmaß vor Ort</p></div>
+                <div class="step-item"><div class="step-number">3</div><p><strong>Angebot</strong><br>Festpreis</p></div>
+                <div class="step-item"><div class="step-number">4</div><p><strong>Aufbau</strong><br>Termintreu</p></div>
             </div>
         </div>
     </div>
@@ -179,11 +132,11 @@
         <div class="grid">
             <div class="card">
                 <h3>🏠 Privathäuser</h3>
-                <p>Spezialisiert auf Ein- und Mehrfamilienhäuser in Leuna, Merseburg und Umgebung. Perfekter Halt für Ihre Fassaden- und Dacharbeiten.</p>
+                <p>Einfamilien- und Mehrfamilienhäuser in Leuna und Umgebung. Perfekter Halt für Ihre Fassaden- und Dacharbeiten.</p>
             </div>
             <div class="card">
                 <h3>🏢 Gewerbeobjekte</h3>
-                <p>Effiziente Einrüstungen für Märkte, Hallen und Industriegebäude im Saalekreis. Wir passen uns flexibel Ihrem Zeitplan an.</p>
+                <p>Effiziente Einrüstungen für Märkte, Hallen und Industriegebäude im Saalekreis.</p>
             </div>
         </div>
     </div>
@@ -199,24 +152,40 @@
                 <p>✉️ jens.spittel@web.de</p>
             </div>
             <div class="card">
-                <form action="#" method="POST" enctype="multipart/form-data">
+                <form id="contactForm" action="https://formspree.io/f/DEIN_FORMSPREE_LINK" method="POST" enctype="multipart/form-data">
+                    
+                    <input type="hidden" name="_subject" id="emailSubject" value="Neue Anfrage">
+                    <input type="hidden" name="Anfragenummer" id="requestNumField">
+
                     <div class="form-group">
                         <label>Name *</label>
-                        <input type="text" placeholder="Vor- und Zuname" required>
+                        <input type="text" name="Name" id="userName" placeholder="Vor- und Zuname" required oninput="updateSubject()">
                     </div>
+                    
                     <div class="form-group">
                         <label>E-Mail *</label>
-                        <input type="email" placeholder="ihre@mail.de" required>
+                        <input type="email" name="Email" placeholder="ihre@mail.de" required>
                     </div>
+
+                    <div class="form-group">
+                        <label>Objektart *</label>
+                        <select name="Objektart" id="objectType" required onchange="updateSubject()">
+                            <option value="" disabled selected>Bitte wählen...</option>
+                            <option value="Privatimmobilie">Privatimmobilie</option>
+                            <option value="Gewerbeimmobilie">Gewerbeimmobilie</option>
+                        </select>
+                    </div>
+
                     <div class="form-group">
                         <label>Nachricht / Projektdetails *</label>
-                        <textarea rows="4" placeholder="Beschreiben Sie kurz Ihr Vorhaben..." required></textarea>
+                        <textarea name="Nachricht" rows="4" placeholder="Beschreiben Sie kurz Ihr Vorhaben..." required></textarea>
                     </div>
+
                     <div class="form-group">
                         <label>Anhänge (z.B. Fotos vom Objekt)</label>
-                        <input type="file" name="attachment" multiple>
-                        <small style="display:block; margin-top:0.3rem;">Fotos helfen uns bei der schnellen Einschätzung Ihres Projekts.</small>
+                        <input type="file" name="Anhang" multiple>
                     </div>
+
                     <button type="submit" class="submit-btn">Anfrage absenden</button>
                 </form>
             </div>
@@ -243,6 +212,30 @@
             document.getElementById(tabName).classList.add("active");
             evt.currentTarget.className += " active";
             window.scrollTo(0,0);
+        }
+
+        // Generiert eine einmalige Nummer basierend auf Datum & Uhrzeit (Format: YYMMDD-HHMMSS)
+        function generateRequestNumber() {
+            const now = new Date();
+            const year = String(now.getFullYear()).slice(-2);
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            
+            const num = `${year}${month}${day}-${hours}${minutes}${seconds}`;
+            document.getElementById('requestNumField').value = num;
+            updateSubject();
+        }
+
+        function updateSubject() {
+            const num = document.getElementById('requestNumField').value;
+            const name = document.getElementById('userName').value || "Name";
+            const type = document.getElementById('objectType').value || "Objekt";
+            
+            const subject = `Anfrage(${num}) - ${name} - ${type}`;
+            document.getElementById('emailSubject').value = subject;
         }
     </script>
 </body>
