@@ -96,7 +96,7 @@
         footer { background: var(--green-dark); color: var(--silver-mid); text-align: center; padding: 2rem; margin-top: 2rem; }
     </style>
 </head>
-<body onload="generateRequestNumber()">
+<body>
 
     <header>
         <h1>Jens Spittel Gerüstbau</h1>
@@ -141,14 +141,16 @@
     </div>
 
     <div id="kontakt" class="tab-content">
-        <h2>Projektanfrage senden</h2>
+        <h2>Kontakt & Anfragen</h2>
         <div class="grid">
             <div class="card">
-                <h3>Kontaktdaten</h3>
+                <h3>Direkter Draht</h3>
                 <p>📍 Starenweg 14, 06237 Leuna</p>
                 <p>📞 (03461) 811547</p>
                 <p>📱 0173 5292791</p>
-                <p>✉️ jens.spittel@web.de</p>
+                <hr style="margin: 1rem 0; border: 0; border-top: 1px solid var(--silver-dark);">
+                <p><strong>Allgemeine Anfragen:</strong><br>✉️ jens.spittel@web.de</p>
+                <p style="margin-top: 10px;"><strong>Rechnungen & Buchhaltung:</strong><br>✉️ rechnung@spittel-geruestbau.de</p>
             </div>
             <div class="card">
                 <form id="contactForm" action="https://formspree.io/f/DEIN_FORMSPREE_LINK" method="POST" enctype="multipart/form-data">
@@ -197,29 +199,20 @@
 
     <script>
         function openTab(tabName) {
-            // Alle Inhalte ausblenden
             const tabcontent = document.getElementsByClassName("tab-content");
             for (let i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].style.display = "none";
                 tabcontent[i].classList.remove("active");
             }
-            
-            // Alle Buttons zurücksetzen
             const tablinks = document.getElementsByClassName("tab-btn");
             for (let i = 0; i < tablinks.length; i++) {
                 tablinks[i].classList.remove("active");
             }
-            
-            // Ausgewählten Inhalt anzeigen
             document.getElementById(tabName).style.display = "block";
             document.getElementById(tabName).classList.add("active");
-            
-            // Den angeklickten Button hervorheben (über das event.target)
-            const eventBtn = event.currentTarget;
-            if (eventBtn) {
-                eventBtn.classList.add("active");
+            if (event && event.currentTarget) {
+                event.currentTarget.classList.add("active");
             }
-            
             window.scrollTo(0,0);
         }
 
@@ -253,10 +246,14 @@
             }
         }
 
-        // Lade-Event für die Anfragenummer
-        window.addEventListener('DOMContentLoaded', (event) => {
-            generateRequestNumber();
-        });
+        document.getElementById('contactForm').onsubmit = function() {
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = "Wird gesendet...";
+            btn.style.opacity = "0.7";
+            btn.style.cursor = "not-allowed";
+        };
+
+        window.onload = generateRequestNumber;
     </script>
 </body>
 </html>
