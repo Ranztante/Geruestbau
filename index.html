@@ -26,13 +26,12 @@
         nav {
             display: flex; justify-content: center; background: var(--green-dark);
             position: sticky; top: 0; z-index: 1000; border-bottom: 3px solid var(--silver-dark);
-            overflow-x: auto;
         }
 
         .tab-btn {
             background: none; border: none; color: var(--silver-mid);
             padding: 1rem 1.5rem; cursor: pointer; font-size: 1rem;
-            font-weight: bold; transition: all 0.3s; white-space: nowrap;
+            font-weight: bold; transition: all 0.3s;
         }
 
         .tab-btn.active {
@@ -97,7 +96,7 @@
         footer { background: var(--green-dark); color: var(--silver-mid); text-align: center; padding: 2rem; margin-top: 2rem; }
     </style>
 </head>
-<body>
+<body onload="generateRequestNumber()">
 
     <header>
         <h1>Jens Spittel Gerüstbau</h1>
@@ -105,9 +104,9 @@
     </header>
 
     <nav>
-        <button class="tab-btn active" onclick="openTab(event, 'start')">Startseite</button>
-        <button class="tab-btn" onclick="openTab(event, 'leistungen')">Leistungen</button>
-        <button class="tab-btn" onclick="openTab(event, 'kontakt')">Anfrage</button>
+        <button class="tab-btn active" onclick="openTab('start')">Startseite</button>
+        <button class="tab-btn" onclick="openTab('leistungen')">Leistungen</button>
+        <button class="tab-btn" onclick="openTab('kontakt')">Anfrage</button>
     </nav>
 
     <div id="start" class="tab-content active">
@@ -153,7 +152,6 @@
             </div>
             <div class="card">
                 <form id="contactForm" action="https://formspree.io/f/DEIN_FORMSPREE_LINK" method="POST" enctype="multipart/form-data">
-                    
                     <input type="hidden" name="_subject" id="emailSubject" value="Neue Anfrage">
                     <input type="hidden" name="Anfragenummer" id="requestNumField">
                     <input type="hidden" name="_replyto" id="replyToField">
@@ -198,27 +196,67 @@
     </footer>
 
     <script>
-        // Tab-Navigation
-        function openTab(evt, tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
+        function openTab(tabName) {
+            // Alle Inhalte ausblenden
+            const tabcontent = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].style.display = "none";
                 tabcontent[i].classList.remove("active");
             }
-            tablinks = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            
+            // Alle Buttons zurücksetzen
+            const tablinks = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
             }
+            
+            // Ausgewählten Inhalt anzeigen
             document.getElementById(tabName).style.display = "block";
             document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.className += " active";
+            
+            // Den angeklickten Button hervorheben (über das event.target)
+            const eventBtn = event.currentTarget;
+            if (eventBtn) {
+                eventBtn.classList.add("active");
+            }
+            
             window.scrollTo(0,0);
         }
 
-        // Einmalige Nummer basierend auf Zeitstempel (YYMMDD-HHMMSS) generieren
         function generateRequestNumber() {
             const now = new Date();
             const year = String(now.getFullYear()).slice(-2);
-            const month = String(now.getMonth() + 1).padStart
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
             
+            const num = year + month + day + "-" + hours + minutes + seconds;
+            const field = document.getElementById('requestNumField');
+            if (field) {
+                field.value = num;
+                updateSubject();
+            }
+        }
+
+        function updateSubject() {
+            const numField = document.getElementById('requestNumField');
+            const nameField = document.getElementById('userName');
+            const typeField = document.getElementById('objectType');
+            const emailField = document.getElementById('userEmail');
+            
+            if (numField && nameField && typeField && emailField) {
+                const subject = "Anfrage(" + numField.value + ") - " + (nameField.value || "Name") + " - " + (typeField.value || "Objekt");
+                document.getElementById('emailSubject').value = subject;
+                document.getElementById('replyToField').value = emailField.value;
+            }
+        }
+
+        // Lade-Event für die Anfragenummer
+        window.addEventListener('DOMContentLoaded', (event) => {
+            generateRequestNumber();
+        });
+    </script>
+</body>
+</html>
