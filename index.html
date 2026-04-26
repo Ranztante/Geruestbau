@@ -97,7 +97,7 @@
         footer { background: var(--green-dark); color: var(--silver-mid); text-align: center; padding: 2rem; margin-top: 2rem; }
     </style>
 </head>
-<body onload="generateRequestNumber()">
+<body>
 
     <header>
         <h1>Jens Spittel Gerüstbau</h1>
@@ -156,6 +156,7 @@
                     
                     <input type="hidden" name="_subject" id="emailSubject" value="Neue Anfrage">
                     <input type="hidden" name="Anfragenummer" id="requestNumField">
+                    <input type="hidden" name="_replyto" id="replyToField">
 
                     <div class="form-group">
                         <label>Name *</label>
@@ -164,7 +165,7 @@
                     
                     <div class="form-group">
                         <label>E-Mail *</label>
-                        <input type="email" name="Email" placeholder="ihre@mail.de" required>
+                        <input type="email" name="Email" id="userEmail" placeholder="ihre@mail.de" required oninput="updateSubject()">
                     </div>
 
                     <div class="form-group">
@@ -186,7 +187,7 @@
                         <input type="file" name="Anhang" multiple>
                     </div>
 
-                    <button type="submit" class="submit-btn">Anfrage absenden</button>
+                    <button type="submit" class="submit-btn" id="submitBtn">Anfrage jetzt absenden</button>
                 </form>
             </div>
         </div>
@@ -197,6 +198,7 @@
     </footer>
 
     <script>
+        // Tab-Navigation
         function openTab(evt, tabName) {
             var i, tabcontent, tablinks;
             tabcontent = document.getElementsByClassName("tab-content");
@@ -214,29 +216,9 @@
             window.scrollTo(0,0);
         }
 
-        // Generiert eine einmalige Nummer basierend auf Datum & Uhrzeit (Format: YYMMDD-HHMMSS)
+        // Einmalige Nummer basierend auf Zeitstempel (YYMMDD-HHMMSS) generieren
         function generateRequestNumber() {
             const now = new Date();
             const year = String(now.getFullYear()).slice(-2);
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const day = String(now.getDate()).padStart(2, '0');
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart
             
-            const num = `${year}${month}${day}-${hours}${minutes}${seconds}`;
-            document.getElementById('requestNumField').value = num;
-            updateSubject();
-        }
-
-        function updateSubject() {
-            const num = document.getElementById('requestNumField').value;
-            const name = document.getElementById('userName').value || "Name";
-            const type = document.getElementById('objectType').value || "Objekt";
-            
-            const subject = `Anfrage(${num}) - ${name} - ${type}`;
-            document.getElementById('emailSubject').value = subject;
-        }
-    </script>
-</body>
-</html>
