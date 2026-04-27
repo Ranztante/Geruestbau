@@ -96,6 +96,16 @@
         }
         button.submit-btn:hover { background: var(--green-dark); }
 
+        /* Neue Button-Styles für Anruf & WhatsApp */
+        .contact-btn {
+            display: block; width: 100%; padding: 0.8rem; margin-bottom: 0.8rem;
+            text-align: center; border-radius: 8px; font-weight: bold;
+            text-decoration: none; transition: opacity 0.3s;
+        }
+        .contact-btn:hover { opacity: 0.8; }
+        .btn-call { background-color: var(--silver-mid); color: #333; }
+        .btn-wa { background-color: #25D366; color: white; }
+
         footer { background: var(--green-dark); color: var(--silver-mid); text-align: center; padding: 2rem; margin-top: 2rem; }
         .footer-links { margin-top: 10px; font-size: 0.9rem; }
         .footer-links a { color: var(--silver-mid); text-decoration: none; margin: 0 10px; cursor: pointer; }
@@ -173,10 +183,14 @@
         <div class="grid">
             <div class="card">
                 <h3>Direkter Draht</h3>
-                <p>📍 Starenweg 14, 06237 Leuna</p>
-                <p>📱 0173 5292791</p>
-                <p>📞 (03461) 811547</p>
-                <hr style="margin: 1rem 0; border: 0; border-top: 1px solid var(--silver-dark);">
+                <p style="margin-bottom: 1rem;">📍 Starenweg 14, 06237 Leuna</p>
+                
+                <a href="tel:+491735292791" class="contact-btn btn-call">📱 Mobil: 0173 5292791</a>
+                <a href="tel:+493461811547" class="contact-btn btn-call">📞 Festnetz: (03461) 811547</a>
+                
+                <a href="https://wa.me/491735292791?text=Hallo%20Jens%20Spittel%20Ger%C3%BCstbau%2C%0Aich%20habe%20eine%20Anfrage.%0A%0A%E2%96%B6%20Ort%3A%20%0A%E2%96%B6%20Objektart%20(z.B.%20Einfamilienhaus)%3A%20%0A%E2%96%B6%20Was%20soll%20gemacht%20werden%3A%20%0A%0A(Tipp%3A%20Sie%20k%C3%B6nnen%20hier%20direkt%20Fotos%20vom%20Haus%20mitschicken)" class="contact-btn btn-wa" target="_blank">💬 Anfrage per WhatsApp</a>
+
+                <hr style="margin: 1.5rem 0; border: 0; border-top: 1px solid var(--silver-dark);">
                 <p><strong>Allgemeine Anfragen:</strong><br>✉️ jens.spittel@web.de</p>
                 <p style="margin-top: 10px;"><strong>Rechnungen:</strong><br>✉️ rechnung@spittel-geruestbau.de</p>
             </div>
